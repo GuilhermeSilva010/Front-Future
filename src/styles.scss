@@ -1,0 +1,121 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/primeng/resources/primeng.min.css";
+@import "../node_modules/primeng/resources/themes/saga-blue/theme.css";
+@import "../node_modules/primeflex/primeflex.scss";
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/prismjs/themes/prism-coy.css";
+@import "../node_modules/@fullcalendar/core/main.min.css";
+@import "../node_modules/@fullcalendar/daygrid/main.min.css";
+@import "../node_modules/@fullcalendar/timegrid/main.min.css";
+@import "./assets/layout/css/layout.css";
+@import "assets/demo/flags/flags.css";
+
+
+
+.p-datatable .p-datatable-tbody > tr > td{
+    text-align: left; padding: 0.5rem 0.5rem 0.2rem 0.5rem;
+}
+
+.p-dialog .p-dialog-header {
+    border: 1px solid #41434a;
+    background-color: #41434a;
+    height: 50px;
+    color: #ffffff;
+    
+  }
+
+  .p-dialog .p-dialog-header .p-dialog-header-icon{
+    color: #ffffff;
+  }
+
+  .p-dialog .p-dialog-content {
+    padding: 1rem 1.5rem 1rem 1.5rem;
+  }
+
+.p-dialog .p-dialog-header .p-dialog-title {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.transparent-modal .p-dialog-content {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: hidden;
+
+}
+
+.transparent-modal .p-dialog-header {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  display: none;
+}
+
+.transparent-modal {
+  box-shadow: none !important;
+}
+
+@keyframes p-progress-spinner-color {
+  100%,
+  0% {
+    stroke: white;
+  }
+}
+.p-progressbar {
+  border: 0 none;
+  height: 0.5rem;
+  background: #bfc2c6;
+  border-radius: 15px;
+  width: 90%
+}
+.p-progressbar .p-progressbar-value {
+  border: 0 none;
+  margin: 0;
+  background: #20d077;
+}
+.p-progressbar .p-progressbar-label {
+  color: #f2f2f200;
+  line-height: 1.5rem;
+}
+
+.p-steps .p-steps-item.p-highlight .p-steps-number {
+  border-color: #0488d1;
+  background: #0488d1;
+  color: white;
+}
+
+.p-steps .p-steps-item.p-highlight .p-steps-title {
+  font-weight: 600;
+  color: #0488d1;
+}
+
+.p-progressbar .p-progressbar-value {
+  border: 0 none;
+  margin: 0;
+  background: #19c4cd;
+}
+.p-progressbar .p-progressbar-label {
+  color: #f2f2f200;
+  line-height: 1.5rem;
+}
+.colorNew .p-progressbar .p-progressbar-value {
+  background: #a63892;
+}
+.colorApproved .p-progressbar .p-progressbar-value {
+  background: #d07e19;
+}
+.colorProduction .p-progressbar .p-progressbar-value {
+  background: #d2b31a;
+}
+.colorChecked .p-progressbar .p-progressbar-value {
+  background: #4ab523;
+}
+.colorBilled .p-progressbar .p-progressbar-value {
+  background: #1a9dc1;
+}
+
+.p-steps .p-steps-item:before {
+  border-top: 4px solid #e8ebee;
+}
