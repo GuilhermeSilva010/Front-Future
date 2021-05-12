@@ -8,7 +8,7 @@
       </div>
       <div class="buttons">
         <div class="p-grid p-jc-start">
-          
+
           <div class="p-col-fixed">
             <button pButton type="button" class="p-button-info" icon="pi pi-refresh" label="Atualizar"
               (click)="refresh()"></button>
@@ -42,13 +42,13 @@
         <td class="column">{{ dash.name }}</td>
         <td class="column">{{ dash.apliMin }}</td>
         <td class="column">{{ dash.priceUni }}</td>
-        <td class="column">{{ dash.rentabi }}</td>
-        <td class="column">{{ dash.taxa }}</td>
+        <td class="column">{{ dash.rentabi }} %</td>
+        <td class="column">{{ dash.taxa }} %</td>
         <td>
           <div class="p-grid">
 
-            <button pButton pRipple type="button" class="p-button-success" icon="pi pi-pencil" pTooltip="Editar Site"
-              tooltipPosition="top" (click)="showEditDialog(dash.valor)"></button>
+            <button pButton pRipple type="button" label="Investir " class="p-button-warning" icon="pi pi-chart-line"
+              pTooltip="Investir" tooltipPosition="top" (click)="showEditDialog(dash.valor)"></button>
 
 
           </div>
@@ -65,4 +65,3 @@
     (onPageChange)="paginate($event)">
   </p-paginator>
 </div>
-

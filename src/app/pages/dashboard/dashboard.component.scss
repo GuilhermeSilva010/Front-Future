@@ -1,0 +1,29 @@
+.table-header {
+  font-size: 25px;
+}
+
+.buttons {
+  & .p-grid {
+      margin-top: 10px;
+  }
+}
+
+.p-grid {
+  & .p-col {
+      & .p-input-icon-left {
+          float: right;
+      }
+  }
+}
+
+.p-col-12 {
+  margin-top: 20px;
+}
+
+table {
+  table-layout: fixed;
+}
+
+.column {
+  word-break: break-all; 
+}
