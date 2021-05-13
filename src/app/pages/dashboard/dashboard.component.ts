@@ -23,6 +23,9 @@ export class DashboardComponent implements OnInit {
   dialogMessage: String;
   dialogTitle: String;
 
+  isShowAlterDialog: boolean = false;
+  alterDialogTitle: String;
+
   form: FormGroup;
   form2: FormGroup;
 
@@ -100,6 +103,11 @@ export class DashboardComponent implements OnInit {
         );
       });
     this.refresh();
+  }
+
+  showEditDialog() {
+    this.alterDialogTitle = "Valor p/ Investir";
+    this.isShowAlterDialog = true;
   }
 
   showDialog(title: String, msg: String) {

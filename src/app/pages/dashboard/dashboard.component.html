@@ -21,17 +21,17 @@
         <th pSortableColumn="name">
           Nome <p-sortIcon field="name"></p-sortIcon>
         </th>
-        <th pSortableColumn="name">
-          Aplicação Min <p-sortIcon field="name"></p-sortIcon>
+        <th pSortableColumn="apliMin">
+          Aplicação Min <p-sortIcon field="apliMin"></p-sortIcon>
         </th>
-        <th pSortableColumn="name">
-          Preço Unitário <p-sortIcon field="name"></p-sortIcon>
+        <th pSortableColumn="priceUni">
+          Preço Unitário <p-sortIcon field="priceUni"></p-sortIcon>
         </th>
-        <th pSortableColumn="name">
-          Rentabilidade <p-sortIcon field="name"></p-sortIcon>
+        <th pSortableColumn="rentabi">
+          Rentabilidade <p-sortIcon field="rentabi"></p-sortIcon>
         </th>
-        <th pSortableColumn="name">
-          Taxa <p-sortIcon field="name"></p-sortIcon>
+        <th pSortableColumn="taxa">
+          Taxa <p-sortIcon field="taxa"></p-sortIcon>
         </th>
         <th style="width: 10rem">Açōes</th>
 
@@ -65,3 +65,51 @@
     (onPageChange)="paginate($event)">
   </p-paginator>
 </div>
+
+<p-dialog
+    header="{{ alterDialogTitle }}"
+    [(visible)]="isShowAlterDialog"
+    [modal]="true"
+    [style]="{ width: '20vw' }"
+>
+    <form [formGroup]="form">
+        <div class="p-fluid forms-grid" style="margin: 1em 0">
+            <div class="forms">
+                <div class="p-grid">
+                    <div class="p-col-12">
+                        <span class="p-float-label">
+                            <input
+                                id="txt-name"
+                                type="text"
+                                pInputText
+                                formControlName="name"
+                                maxlength="100"
+                            />
+                            <label for="txt-name">Valor*</label>
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <p-footer>
+      <button
+          class="p-button-danger"
+          type="button"
+          pButton
+          icon="pi pi-ban"
+          (click)="isShowAlterDialog = false"
+          label="Cancelar"
+      ></button>
+      <button
+          class="p-button-success"
+          type="button"
+          pButton
+          icon="pi pi-check"
+          (click)="save()"
+          [disabled]="!form.valid"
+          label="Salvar"
+      ></button>
+  </p-footer>
+</p-dialog>
