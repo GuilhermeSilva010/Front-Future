@@ -5,4 +5,6 @@ export interface DashI {
   priceUni?: string;
   rentabi: string;
   taxa?: string;
+  cotas: string;
+  id: string;
 }

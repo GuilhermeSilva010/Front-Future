@@ -81,6 +81,7 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { LoadingIndicatorComponent } from "../../shared/loading-indicator/loading-indicator.component";
 import { KeyFilterModule } from "primeng/keyfilter";
 import { DashboardComponent } from "../dashboard/dashboard.component";
+import { CotasComponent } from "../cotas/cotas.component";
 
 @NgModule({
     declarations: [
@@ -90,6 +91,7 @@ import { DashboardComponent } from "../dashboard/dashboard.component";
         AppMenuitemComponent,
         LoadingIndicatorComponent,
         DashboardComponent,
+        CotasComponent
     ],
     imports: [
         CommonModule,

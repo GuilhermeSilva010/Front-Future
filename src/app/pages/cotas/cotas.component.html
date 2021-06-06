@@ -1,0 +1,46 @@
+<div class="card">
+    <p-table #dt [value]="cotas" styleClass="p-datatable-striped" [rowHover]="true" [loading]="loading">
+      <ng-template pTemplate="caption">
+        <div class="p-grid">
+          <div class="p-col-fixed">
+            <div class="table-header">Lista de Cotas </div>
+          </div>
+        </div>
+        <div class="buttons">
+          <div class="p-grid p-jc-start">
+  
+            <div class="p-col-fixed">
+              <button pButton type="button" class="p-button-info" icon="pi pi-refresh" label="Atualizar"
+                (click)="refresh()"></button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="name">
+            Nome <p-sortIcon field="name"></p-sortIcon>
+          </th>
+          <th pSortableColumn="calculo">
+            Cotas <p-sortIcon field="calculo"></p-sortIcon>
+          </th>
+  
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-cota>
+        <tr class="p-selectable-row">
+          <td class="column">{{ cota.name }}</td>
+          <td class="column">{{ cota.calculo }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <p>Não há Cotas</p>
+        </tr>
+      </ng-template>
+    </p-table>
+    <p-paginator #pg id="pg" [rows]="10" [totalRecords]="counter" [rowsPerPageOptions]="[10, 25, 50]"
+      (onPageChange)="paginate($event)">
+    </p-paginator>
+  </div>
+  

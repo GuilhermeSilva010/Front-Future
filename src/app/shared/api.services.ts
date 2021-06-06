@@ -5,8 +5,13 @@ export const ENDPOINTS = {
     DASHBOARD: {
         LIST: "api/fundos/list",
         COUNT: "api/fundos/list/count",
+        ADD: "api/fundos/add"
     },
-  
+
+    COTAS: {
+        LIST: "api/calculo/list",
+        COUNT: "api/calculo/list/count",
+    },
   
   
 };

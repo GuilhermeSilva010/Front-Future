@@ -3,7 +3,7 @@
     <ng-template pTemplate="caption">
       <div class="p-grid">
         <div class="p-col-fixed">
-          <div class="table-header">Dashboard</div>
+          <div class="table-header">Lista de Fundos de Investimento </div>
         </div>
       </div>
       <div class="buttons">
@@ -18,6 +18,9 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
+        <th pSortableColumn="id">
+          Id <p-sortIcon field="id"></p-sortIcon>
+        </th>
         <th pSortableColumn="name">
           Nome <p-sortIcon field="name"></p-sortIcon>
         </th>
@@ -39,6 +42,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-dash>
       <tr class="p-selectable-row">
+        <td class="column">{{ dash.id }} </td>
         <td class="column">{{ dash.name }}</td>
         <td class="column">{{ dash.apliMin }}</td>
         <td class="column">{{ dash.priceUni }}</td>
@@ -49,7 +53,6 @@
 
             <button pButton pRipple type="button" label="Investir " class="p-button-warning" icon="pi pi-chart-line"
               pTooltip="Investir" tooltipPosition="top" (click)="showEditDialog(dash.valor)"></button>
-
 
           </div>
         </td>
@@ -82,14 +85,32 @@
                                 id="txt-name"
                                 type="text"
                                 pInputText
-                                formControlName="name"
+                                formControlName="valor"
                                 maxlength="100"
+                               
+
+                                
                             />
                             <label for="txt-name">Valor*</label>
                         </span>
                         
                     </div>
                 </div>
+                <div class="p-grid">
+                  <div class="p-col-12">
+                      <span class="p-float-label">
+                          <input
+                              id="txt-name"
+                              type="text"
+                              pInputText
+                              formControlName="name"
+                              maxlength="100"
+                          />
+                          <label for="txt-name">Nome*</label>
+                      </span>
+                      
+                  </div>
+              </div>
             </div>
         </div>
     </form>
@@ -104,8 +125,7 @@
       ></button>
       <button
           class="p-button-success"
-          type="button"
-          pButton
+          pButton  type="button"
           icon="pi pi-check"
           (click)="save()"
           [disabled]="!form.valid"

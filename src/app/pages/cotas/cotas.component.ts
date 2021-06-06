@@ -3,22 +3,24 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Paginator } from 'primeng/paginator/paginator';
 import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 import { ApiResponseI } from 'src/app/shared/apiresponse.model';
-import { DashI } from '../dashboard/dashboard.model';
-import { DashboardService } from '../dashboard/dashboard.service';
+import { CotasService } from '../cotas/cotas.service';
 import { merge, of } from "rxjs";
 import { SaveEditableRow } from 'primeng/table';
+import {CotasI} from '../cotas/cotas.model';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-cotas',
+  templateUrl: './cotas.component.html',
+  styleUrls: ['./cotas.component.scss']
 })
-export class DashboardComponent implements OnInit {
+
+
+export class CotasComponent implements OnInit {
 
   loading: boolean = true;
 
-  dashs: DashI[];
-  dash: DashI;
+  cotas: CotasI[];
+  cota: CotasI;
   teste: number;
   isShowDialog: boolean = false;
   dialogMessage: String;
@@ -27,24 +29,14 @@ export class DashboardComponent implements OnInit {
   isShowAlterDialog: boolean = false;
   alterDialogTitle: String;
 
-  form: FormGroup;
   form2: FormGroup;
 
   counter: number = 0;
   @ViewChild("pg", { static: true }) public paginator: Paginator;
 
-  constructor(private fb: FormBuilder, private dashboardService: DashboardService) { }
+  constructor(private fb: FormBuilder, private cotasService: CotasService) { }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      valor: new FormControl("", [
-        Validators.required
-      ]),
-      name: new FormControl("", [
-        Validators.required
-      ]),
-      id: new FormControl(1),
-    });
 
     this.form2 = this.fb.group({
       data: new FormControl(""),
@@ -59,16 +51,16 @@ export class DashboardComponent implements OnInit {
         distinctUntilChanged(),
         tap(() => (this.loading = true)),
         switchMap(() =>
-          this.dashboardService.list(this.form2.getRawValue())
+          this.cotasService.list(this.form2.getRawValue())
         ),
         tap(() => (this.loading = false))
       )
       .subscribe((values) => {
-        this.dashs = [];
+        this.cotas = [];
         this.paginator.changePage(0);
         this.getCounter();
-        merge(this.dashs, values.data).subscribe((values) =>
-          this.dashs.push(values)
+        merge(this.cotas, values.data).subscribe((values) =>
+          this.cotas.push(values)
         );
       });
 
@@ -79,14 +71,14 @@ export class DashboardComponent implements OnInit {
         distinctUntilChanged(),
         tap(() => (this.loading = true)),
         switchMap(() =>
-          this.dashboardService.list(this.form2.getRawValue())
+          this.cotasService.list(this.form2.getRawValue())
         ),
         tap(() => (this.loading = false))
       )
       .subscribe((values) => {
-        this.dashs = [];
-        merge(this.dashs, values.data).subscribe((values) =>
-          this.dashs.push(values)
+        this.cotas = [];
+        merge(this.cotas, values.data).subscribe((values) =>
+          this.cotas.push(values)
         );
       });
 
@@ -97,14 +89,14 @@ export class DashboardComponent implements OnInit {
         distinctUntilChanged(),
         tap(() => (this.loading = true)),
         switchMap(() =>
-          this.dashboardService.list(this.form2.getRawValue())
+          this.cotasService.list(this.form2.getRawValue())
         ),
         tap(() => (this.loading = false))
       )
       .subscribe((values) => {
-        this.dashs = [];
-        merge(this.dashs, values.data).subscribe((values) =>
-          this.dashs.push(values)
+        this.cotas = [];
+        merge(this.cotas, values.data).subscribe((values) =>
+          this.cotas.push(values)
         );
       });
     this.refresh();
@@ -122,7 +114,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getCounter() {
-    this.dashboardService
+    this.cotasService
       .count(this.form2.getRawValue())
       .subscribe((value) => (this.counter = value.data));
   }
@@ -134,57 +126,20 @@ export class DashboardComponent implements OnInit {
 
   refresh() {
     this.loading = true;
-    this.dashs = [];
-    this.dashboardService
+    this.cotas = [];
+    this.cotasService
       .list(this.form2.getRawValue())
-      .subscribe((dash) => {
-        if ((dash as ApiResponseI).code != 200) {
+      .subscribe((cota) => {
+        if ((cota as ApiResponseI).code != 200) {
           this.showDialog(
             "Ops, algum erro aconteceu.",
-            (dash as ApiResponseI).msg
+            (cota as ApiResponseI).msg
           );
         }
-        this.dashs = (dash as ApiResponseI).data as DashI[];
+        this.cotas = (cota as ApiResponseI).data as CotasI[];
         this.getCounter();
         this.loading = false;
       });
   }
 
-  save(){
-    this.dashboardService.add(this.form.value).subscribe(
-      
-        (val: ApiResponseI) => {
-            if (val.code == 304)
-                this.showDialog(
-                    "Registro já existente!",
-                    val.msg
-                );
-            else if (val.code == 200) {
-                this.isShowAlterDialog = false;
-                this.showDialog(
-                    "Registro adicionado com sucesso.",
-                    val.msg
-                );
-                this.refresh();
-            } else if (
-                val.code == 404 ||
-                val.msg == "PROFILE_NOT_AUTHORIZED"
-            ) {
-                this.isShowAlterDialog = false;
-                this.showDialog(
-                    "O registro não foi adicionado.",
-                    val.msg
-                );
-                this.refresh();
-            }
-        },
-        (error) => {
-            this.restfulException(error.msg);
-        }
-    
-    );
-  }
-  restfulException(msg: String) {
-    this.showDialog("Ocorreu um erro.", msg);
-}
 }

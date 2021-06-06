@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { AppMainComponent } from "./app.main.component";
 import { DashboardComponent } from "../dashboard/dashboard.component";
+import { CotasComponent } from "../cotas/cotas.component";
 
 @NgModule({
     imports: [
@@ -13,6 +14,10 @@ import { DashboardComponent } from "../dashboard/dashboard.component";
                     {
                         path: "dashboard",
                         component: DashboardComponent,
+                    },
+                    {
+                        path: "cotas",
+                        component: CotasComponent,
                     },
                     
                 ],
